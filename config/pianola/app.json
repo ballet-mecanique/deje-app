@@ -1,0 +1,711 @@
+{
+  "modules": [
+    {
+      "tabs": [
+        {
+          "name": "Basic Data",
+          "components": [
+            {
+              "props": {
+                "components": [
+                  {
+                    "props": {
+                      "components": [
+                        {
+                          "props": {
+                            "field": "first_name",
+                            "label": "First Name",
+                            "isReadonly": false
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "last_name",
+                            "label": "Last Name"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "street_1",
+                            "label": "Street 1",
+                            "isReadonly": false
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "street_2",
+                            "label": "Street 2"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "components": [
+                              {
+                                "props": {
+                                  "columns": "4",
+                                  "components": [
+                                    {
+                                      "props": {
+                                        "field": "post_code",
+                                        "label": "Post Code"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    }
+                                  ]
+                                },
+                                "componentType": "BaseLayoutColumn"
+                              },
+                              {
+                                "props": {
+                                  "columns": "8",
+                                  "components": [
+                                    {
+                                      "props": {
+                                        "field": "city",
+                                        "label": "City"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    }
+                                  ]
+                                },
+                                "componentType": "BaseLayoutColumn"
+                              }
+                            ]
+                          },
+                          "componentType": "BaseLayoutRow"
+                        },
+                        {
+                          "props": {
+                            "field": "country_id",
+                            "label": "Country",
+                            "endpoint": "countries",
+                            "itemText": "name_en",
+                            "itemValue": "id"
+                          },
+                          "componentType": "BaseInputAutocomplete"
+                        }
+                      ],
+                      "borderRight": false
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  },
+                  {
+                    "props": {
+                      "components": [
+                        {
+                          "props": {
+                            "field": "phone",
+                            "label": "Phone",
+                            "buttonType": "enlarge"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "mobile",
+                            "label": "Mobile",
+                            "buttonType": "enlarge"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "email",
+                            "label": "E-Mail",
+                            "buttonType": "mail"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "website",
+                            "label": "Website",
+                            "buttonType": "url"
+                          },
+                          "componentType": "BaseInputText"
+                        }
+                      ]
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  }
+                ]
+              },
+              "componentType": "BaseLayoutRow"
+            },
+            {
+              "props": {
+                "marginTop": "3",
+                "marginBottom": "3"
+              },
+              "componentType": "BaseDivider"
+            },
+            {
+              "props": {
+                "components": [
+                  {
+                    "props": {
+                      "components": [
+                        {
+                          "props": {
+                            "title": "Business Address(es)",
+                            "endpoint": "employees",
+                            "linkPath": "companies",
+                            "components": [
+                              {
+                                "props": {
+                                  "field": "company_id",
+                                  "label": "Company",
+                                  "headers": [
+                                    {
+                                      "text": "Name",
+                                      "value": "name"
+                                    },
+                                    {
+                                      "text": "City",
+                                      "value": "city"
+                                    }
+                                  ],
+                                  "endpoint": "companies",
+                                  "components": [
+                                    {
+                                      "props": {
+                                        "field": "name",
+                                        "label": "Name"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    }
+                                  ],
+                                  "displayField": "name",
+                                  "displayValue": "name",
+                                  "newRecordLabel": "new company"
+                                },
+                                "componentType": "BaseInputSearchOrCreate"
+                              },
+                              {
+                                "props": {
+                                  "field": "function",
+                                  "label": "Function"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "department",
+                                  "label": "Department"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "business_phone",
+                                  "label": "Business Phone"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "business_mobile",
+                                  "label": "Business Mobile"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "business_email",
+                                  "label": "Business Email"
+                                },
+                                "componentType": "BaseInputText"
+                              }
+                            ],
+                            "noNewRecord": false,
+                            "maxDialogWidth": 450,
+                            "newSubrecordButtonText": "new business address"
+                          },
+                          "componentType": "BaseCards"
+                        }
+                      ]
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  },
+                  {
+                    "props": {
+                      "components": []
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  }
+                ]
+              },
+              "componentType": "BaseLayoutRow"
+            }
+          ]
+        }
+      ],
+      "lists": [
+        {
+          "name": "Default",
+          "headers": [
+            {
+              "text": "First Name",
+              "value": "first_name"
+            },
+            {
+              "text": "Last Name",
+              "value": "last_name"
+            },
+            {
+              "text": "Street 1",
+              "value": "street_1"
+            },
+            {
+              "text": "Street 2",
+              "value": "street_2"
+            },
+            {
+              "text": "Post Code",
+              "value": "post_code"
+            },
+            {
+              "text": "City",
+              "value": "city"
+            },
+            {
+              "text": "Country",
+              "value": "country.name_en"
+            }
+          ]
+        }
+      ],
+      "basicConfig": {
+        "icon": "mdi-account-group",
+        "name": "Contacts",
+        "path": "contacts",
+        "divider": false,
+        "iconRecord": "mdi-account",
+        "apiEndpoint": "people",
+        "defaultSort": "last_name,first_name",
+        "newRecordText": "New Contact",
+        "loadRelatedData": true
+      },
+      "recordTitleConfig": {
+        "fieldTitle": "full_name"
+      },
+      "newRecordModalComponents": [
+        {
+          "props": {
+            "field": "first_name",
+            "label": "First Name"
+          },
+          "componentType": "BaseInputText"
+        },
+        {
+          "props": {
+            "field": "last_name",
+            "label": "Last Name"
+          },
+          "componentType": "BaseInputText"
+        }
+      ]
+    },
+    {
+      "tabs": [
+        {
+          "name": "Basic Data",
+          "components": [
+            {
+              "props": {
+                "components": [
+                  {
+                    "props": {
+                      "components": [
+                        {
+                          "props": {
+                            "field": "name",
+                            "label": "Name",
+                            "isReadonly": false
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "street_1",
+                            "label": "Street 1"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "street_2",
+                            "label": "Street 2"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "components": [
+                              {
+                                "props": {
+                                  "columns": "4",
+                                  "components": [
+                                    {
+                                      "props": {
+                                        "field": "post_code",
+                                        "label": "Post Code"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    }
+                                  ]
+                                },
+                                "componentType": "BaseLayoutColumn"
+                              },
+                              {
+                                "props": {
+                                  "columns": "8",
+                                  "components": [
+                                    {
+                                      "props": {
+                                        "field": "city",
+                                        "label": "City"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    }
+                                  ]
+                                },
+                                "componentType": "BaseLayoutColumn"
+                              }
+                            ]
+                          },
+                          "componentType": "BaseLayoutRow"
+                        },
+                        {
+                          "props": {
+                            "field": "country_id",
+                            "label": "Country",
+                            "endpoint": "countries",
+                            "itemText": "name_en",
+                            "itemValue": "id"
+                          },
+                          "componentType": "BaseInputAutocomplete"
+                        }
+                      ],
+                      "borderRight": false
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  },
+                  {
+                    "props": {
+                      "components": [
+                        {
+                          "props": {
+                            "field": "phone",
+                            "label": "Phone",
+                            "buttonType": "enlarge"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "email",
+                            "label": "E-Mail",
+                            "buttonType": "mail"
+                          },
+                          "componentType": "BaseInputText"
+                        },
+                        {
+                          "props": {
+                            "field": "website",
+                            "label": "Website",
+                            "buttonType": "url"
+                          },
+                          "componentType": "BaseInputText"
+                        }
+                      ]
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  }
+                ]
+              },
+              "componentType": "BaseLayoutRow"
+            },
+            {
+              "props": {
+                "components": [
+                  {
+                    "props": {
+                      "maxWidth": 1200,
+                      "components": [
+                        {
+                          "props": {
+                            "title": "Employees",
+                            "headers": [
+                              {
+                                "text": "Name",
+                                "value": "person.full_name",
+                                "isLink": true
+                              },
+                              {
+                                "text": "Department",
+                                "value": "department"
+                              },
+                              {
+                                "text": "Function",
+                                "value": "function"
+                              },
+                              {
+                                "text": "Phone",
+                                "value": "business_phone"
+                              },
+                              {
+                                "text": "Mobile",
+                                "value": "business_mobile"
+                              },
+                              {
+                                "text": "Email",
+                                "value": "business_email"
+                              }
+                            ],
+                            "endpoint": "employees",
+                            "noDelete": false,
+                            "components": [
+                              {
+                                "props": {
+                                  "field": "person_id",
+                                  "label": "Contact",
+                                  "headers": [
+                                    {
+                                      "text": "Name",
+                                      "value": "full_name"
+                                    },
+                                    {
+                                      "text": "City",
+                                      "value": "city"
+                                    }
+                                  ],
+                                  "endpoint": "people",
+                                  "components": [
+                                    {
+                                      "props": {
+                                        "field": "first_name",
+                                        "label": "First Name"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    },
+                                    {
+                                      "props": {
+                                        "field": "last_name",
+                                        "label": "Last Name"
+                                      },
+                                      "componentType": "BaseInputText"
+                                    }
+                                  ],
+                                  "displayField": "full_name",
+                                  "displayValue": "full_name",
+                                  "newRecordLabel": "new contact"
+                                },
+                                "componentType": "BaseInputSearchOrCreate"
+                              },
+                              {
+                                "props": {
+                                  "field": "function",
+                                  "label": "Function"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "department",
+                                  "label": "Department"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "business_phone",
+                                  "label": "Business Phone"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "business_mobile",
+                                  "label": "Business Mobile"
+                                },
+                                "componentType": "BaseInputText"
+                              },
+                              {
+                                "props": {
+                                  "field": "business_email",
+                                  "label": "Business Email"
+                                },
+                                "componentType": "BaseInputText"
+                              }
+                            ],
+                            "maxDialogWidth": 450,
+                            "newSubrecordButtonText": "new employee"
+                          },
+                          "componentType": "BaseRecordDataTable"
+                        }
+                      ]
+                    },
+                    "componentType": "BaseLayoutColumn"
+                  }
+                ]
+              },
+              "componentType": "BaseLayoutRow"
+            }
+          ]
+        }
+      ],
+      "lists": [
+        {
+          "name": "Default",
+          "headers": [
+            {
+              "text": "Name",
+              "value": "name"
+            },
+            {
+              "text": "Street 1",
+              "value": "street_1"
+            },
+            {
+              "text": "Street 2",
+              "value": "street_2"
+            },
+            {
+              "text": "Post Code",
+              "value": "post_code"
+            },
+            {
+              "text": "City",
+              "value": "city"
+            },
+            {
+              "text": "Country",
+              "value": "country.name_en"
+            }
+          ]
+        }
+      ],
+      "basicConfig": {
+        "icon": "mdi-office-building",
+        "name": "Companies",
+        "path": "companies",
+        "divider": false,
+        "apiEndpoint": "companies",
+        "defaultSort": "name",
+        "newRecordText": "New Company",
+        "loadRelatedData": true
+      },
+      "queryFields": [
+        {
+          "fields": [
+            {
+              "text": "Name",
+              "value": "name"
+            },
+            {
+              "text": "Street 1",
+              "value": "street_1"
+            },
+            {
+              "text": "Street 2",
+              "value": "street_2"
+            },
+            {
+              "text": "Post Code",
+              "value": "post_code"
+            },
+            {
+              "text": "City",
+              "value": "city"
+            },
+            {
+              "text": "Country",
+              "type": "autocomplete",
+              "value": "country_id",
+              "endpoint": "countries",
+              "itemText": "name_en",
+              "itemValue": "id"
+            }
+          ],
+          "tableName": "companies",
+          "tableNameLabel": "Basic Details"
+        }
+      ],
+      "recordTitleConfig": {
+        "fieldTitle": "name"
+      },
+      "newRecordModalComponents": [
+        {
+          "props": {
+            "field": "name",
+            "label": "Name"
+          },
+          "componentType": "BaseInputText"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "name": "Länder",
+      "sort": "name_de+asc",
+      "endpoint": "countries",
+      "components": [
+        {
+          "props": {
+            "field": "name_de",
+            "label": "Name DE"
+          },
+          "componentType": "BaseInputText"
+        },
+        {
+          "props": {
+            "field": "name_en",
+            "label": "Name EN"
+          },
+          "componentType": "BaseInputText"
+        },
+        {
+          "props": {
+            "field": "name_fr",
+            "label": "Name FR"
+          },
+          "componentType": "BaseInputText"
+        },
+        {
+          "props": {
+            "field": "name_it",
+            "label": "Name IT"
+          },
+          "componentType": "BaseInputText"
+        }
+      ]
+    }
+  ],
+  "basicConfig": {
+    "appName": "Deje",
+    "logoPath": "https://res.cloudinary.com/ballet-mecanique/image/upload/v1699703889/pianola-apps/Deje/pb9xsussi5pindfloxnb.png",
+    "twoFactor": false,
+    "appLanguage": "en",
+    "faviconPath": "https://res.cloudinary.com/ballet-mecanique/image/upload/v1699703889/pianola-apps/Deje/pb9xsussi5pindfloxnb.png",
+    "logoPadding": 1,
+    "colorPrimary": "#318DE1",
+    "drawerIsDark": false,
+    "exporterIsActive": true,
+    "backgroundPath": "https://res.cloudinary.com/ballet-mecanique/image/upload/v1699693762/pianola-apps/Deje/tmggjpqh6wsjrqfjkalw.jpg",
+    "colorBackground": "#f2f2ef",
+    "colorItemDrawer": "#318DE1",
+    "apiUrlProduction": "api/pianola/",
+    "recordUpdateMode": "auto",
+    "apiUrlDevelopment": "http://localhost:8000/pianola/",
+    "defaultErrorMessage": "There was a problem connecting to the server. Please try again with a refresh, and if it persists, please contact Andrew on andrew@balletmecanique.eu.",
+    "colorBackgroundDrawer": "#dedede",
+    "colorBackgroundDrawer2": "#e2b7b9",
+    "onlyAdminCanSeeSettings": true
+  }
+}
