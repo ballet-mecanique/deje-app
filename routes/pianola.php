@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AddInvoiceToSettlementController;
+use App\Http\Controllers\RemoveInvoiceFromSettlementController;
+use App\Http\Controllers\SettlementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 | Pianola package and are automatically guarded by the auth middleware.
 |
 */
+
+Route::get('settlements/{id}', [SettlementController::class, 'show']);
+
+Route::post('add-invoice-to-settlement/{invoiceId}/{settlementId}', AddInvoiceToSettlementController::class);
+Route::post('remove-invoice-from-settlement/{invoiceId}', RemoveInvoiceFromSettlementController::class);

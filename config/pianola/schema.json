@@ -368,18 +368,22 @@
                 "name": "updated_at",
                 "column_type": "timestamp",
                 "app_label": ""
+            },
+            {
+                "name": "settlement_id",
+                "column_type": "bigint unsigned",
+                "app_label": ""
             }
         ],
         "belongsTo": [
             {
                 "name": "companies"
+            },
+            {
+                "name": "settlements"
             }
         ],
-        "hasMany": [
-            {
-                "name": "settlement_invoices"
-            }
-        ]
+        "hasMany": []
     },
     {
         "name": "migrations",
@@ -608,46 +612,6 @@
         "app_record_description_column": "full_name"
     },
     {
-        "name": "settlement_invoices",
-        "modelName": "SettlementInvoice",
-        "columns": [
-            {
-                "name": "id",
-                "column_type": "bigint unsigned",
-                "app_label": ""
-            },
-            {
-                "name": "invoice_id",
-                "column_type": "bigint unsigned",
-                "app_label": ""
-            },
-            {
-                "name": "settlement_id",
-                "column_type": "bigint unsigned",
-                "app_label": ""
-            },
-            {
-                "name": "created_at",
-                "column_type": "timestamp",
-                "app_label": ""
-            },
-            {
-                "name": "updated_at",
-                "column_type": "timestamp",
-                "app_label": ""
-            }
-        ],
-        "belongsTo": [
-            {
-                "name": "invoices"
-            },
-            {
-                "name": "settlements"
-            }
-        ],
-        "hasMany": []
-    },
-    {
         "name": "settlement_payers",
         "modelName": "SettlementPayer",
         "columns": [
@@ -664,6 +628,11 @@
             {
                 "name": "settlement_id",
                 "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "is_paid",
+                "column_type": "tinyint(1)",
                 "app_label": ""
             },
             {
@@ -715,7 +684,7 @@
         "belongsTo": [],
         "hasMany": [
             {
-                "name": "settlement_invoices"
+                "name": "invoices"
             },
             {
                 "name": "settlement_payers"

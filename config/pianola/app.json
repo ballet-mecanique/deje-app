@@ -733,8 +733,7 @@
             "recordTitleConfig": {
                 "fieldTitle": "company.name",
                 "fieldSubtitleBefore": "sent_and_due",
-                "fieldSubtitleAfter": "amount",
-                "fieldSubtitleAfter2": "status",
+                "fieldSubtitleAfter2": "amount_display",
                 "headerHeight": 130,
                 "hasStatusDot": true,
                 "statusDotColorRules": [
@@ -748,7 +747,8 @@
                         "field": "status",
                         "value": "unpaid"
                     }
-                ]
+                ],
+                "fieldSubtitleAfter": "description"
             },
             "tabs": [
                 {
@@ -844,6 +844,24 @@
                                                         "label": "Payment Date",
                                                         "field": "date_paid"
                                                     }
+                                                },
+                                                {
+                                                    "componentType": "BaseInputSearchOrCreate",
+                                                    "props": {
+                                                        "label": "Settlement",
+                                                        "field": "settlement_id",
+                                                        "displayField": "date",
+                                                        "endpoint": "settlements",
+                                                        "displayValue": "date",
+                                                        "headers": [
+                                                            {
+                                                                "text": "Date",
+                                                                "value": "date"
+                                                            }
+                                                        ],
+                                                        "displayAsLink": true,
+                                                        "linkPath": "settlements"
+                                                    }
                                                 }
                                             ]
                                         }
@@ -853,6 +871,284 @@
                             "componentType": "BaseLayoutRow"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "basicConfig": {
+                "name": "Settlements",
+                "icon": "mdi-scale-balance",
+                "path": "settlements",
+                "apiEndpoint": "settlements",
+                "divider": true,
+                "defaultSort": "date+desc"
+            },
+            "tabs": [
+                {
+                    "name": "Basic Details",
+                    "components": [
+                        {
+                            "props": {
+                                "components": [
+                                    {
+                                        "componentType": "BaseLayoutColumn",
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseInputDatepicker",
+                                                    "props": {
+                                                        "label": "Date",
+                                                        "field": "date"
+                                                    },
+                                                    "description": "Date",
+                                                    "componentTypeDisplay": "Base Input Datepicker"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputSwitch",
+                                                    "props": {
+                                                        "label": "is locked",
+                                                        "field": "is_locked"
+                                                    },
+                                                    "description": "is locked",
+                                                    "componentTypeDisplay": "Base Input Switch"
+                                                }
+                                            ]
+                                        },
+                                        "description": "Col 1"
+                                    },
+                                    {
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseInputTagger",
+                                                    "props": {
+                                                        "label": "paid by",
+                                                        "endpointJoin": "settlement_payers",
+                                                        "endpointValue": "owners",
+                                                        "endpointSort": "first_name",
+                                                        "displayFieldName": "first_name",
+                                                        "displayFieldValue": "id"
+                                                    },
+                                                    "description": "paid by",
+                                                    "componentTypeDisplay": "Base Input Tagger"
+                                                }
+                                            ]
+                                        },
+                                        "componentType": "BaseLayoutColumn"
+                                    }
+                                ]
+                            },
+                            "componentType": "BaseLayoutRow",
+                            "componentTypeDisplay": "Row"
+                        },
+                        {
+                            "props": {
+                                "components": [
+                                    {
+                                        "componentType": "BaseLayoutColumn",
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "unsettled_invoices",
+                                                        "title": "unsettled Invoices",
+                                                        "headers": [
+                                                            {
+                                                                "text": "ID",
+                                                                "value": "id",
+                                                                "isLink": true,
+                                                                "linkPath": "invoices"
+                                                            },
+                                                            {
+                                                                "text": "Company",
+                                                                "value": "company.name"
+                                                            },
+                                                            {
+                                                                "text": "Description",
+                                                                "value": "description"
+                                                            },
+                                                            {
+                                                                "text": "Amount",
+                                                                "value": "amount_display"
+                                                            }
+                                                        ],
+                                                        "hasActionButton": true,
+                                                        "actionButtonIcon": "mdi-arrow-right",
+                                                        "actionButtonPath": "add-invoice-to-settlement/{field}/{recordId}",
+                                                        "actionButtonField": "id",
+                                                        "noDelete": true,
+                                                        "noNewRecord": true,
+                                                        "noEdit": true
+                                                    },
+                                                    "description": "unsettled Invoices",
+                                                    "componentTypeDisplay": "Data Table"
+                                                }
+                                            ]
+                                        },
+                                        "description": "Col 1"
+                                    },
+                                    {
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "invoices",
+                                                        "title": "Attributed Invoices",
+                                                        "noNewRecord": true,
+                                                        "noDelete": true,
+                                                        "noEdit": true,
+                                                        "hasActionButton": true,
+                                                        "actionButtonIcon": "mdi-arrow-left",
+                                                        "actionButtonPath": "remove-invoice-from-settlement/{field}",
+                                                        "actionButtonField": "id",
+                                                        "headers": [
+                                                            {
+                                                                "text": "ID",
+                                                                "value": "id",
+                                                                "isLink": true
+                                                            },
+                                                            {
+                                                                "text": "Company",
+                                                                "value": "company.name"
+                                                            },
+                                                            {
+                                                                "text": "Description",
+                                                                "value": "description"
+                                                            },
+                                                            {
+                                                                "text": "Amount",
+                                                                "value": "amount",
+                                                                "sumField": "amount",
+                                                                "sumDecimals": "0",
+                                                                "floatDecimals": "0",
+                                                                "type": "float",
+                                                                "align": "right"
+                                                            }
+                                                        ],
+                                                        "includeSumFooter": true
+                                                    },
+                                                    "description": "Attributed Invoices",
+                                                    "componentTypeDisplay": "Data Table"
+                                                }
+                                            ]
+                                        },
+                                        "componentType": "BaseLayoutColumn",
+                                        "description": "Col 2"
+                                    }
+                                ],
+                                "hideIf": [
+                                    {
+                                        "field": "is_locked",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            },
+                            "componentType": "BaseLayoutRow",
+                            "componentTypeDisplay": "Row"
+                        },
+                        {
+                            "props": {
+                                "components": [
+                                    {
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "invoices",
+                                                        "title": "Attributed Invoices",
+                                                        "noNewRecord": true,
+                                                        "noDelete": true,
+                                                        "noEdit": true,
+                                                        "headers": [
+                                                            {
+                                                                "text": "ID",
+                                                                "value": "id",
+                                                                "isLink": true
+                                                            },
+                                                            {
+                                                                "text": "Company",
+                                                                "value": "company.name"
+                                                            },
+                                                            {
+                                                                "text": "Description",
+                                                                "value": "description"
+                                                            },
+                                                            {
+                                                                "text": "Amount",
+                                                                "value": "amount",
+                                                                "sumField": "amount",
+                                                                "sumDecimals": "0",
+                                                                "floatDecimals": "0",
+                                                                "type": "float",
+                                                                "align": "right"
+                                                            }
+                                                        ],
+                                                        "includeSumFooter": true
+                                                    },
+                                                    "description": "Attributed Invoices",
+                                                    "componentTypeDisplay": "Data Table"
+                                                }
+                                            ]
+                                        },
+                                        "componentType": "BaseLayoutColumn",
+                                        "description": "Col 2"
+                                    },
+                                    {
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "settlement_payers",
+                                                        "title": "Payers",
+                                                        "headers": [
+                                                            {
+                                                                "text": "Name",
+                                                                "value": "owner.first_name"
+                                                            },
+                                                            {
+                                                                "text": "Amount SEK",
+                                                                "value": "amount"
+                                                            }
+                                                        ],
+                                                        "noNewRecord": true,
+                                                        "noDelete": true,
+                                                        "noEdit": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "componentType": "BaseLayoutColumn"
+                                    }
+                                ],
+                                "hideIf": [
+                                    {
+                                        "field": "is_locked",
+                                        "operator": "!=",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            "componentType": "BaseLayoutRow",
+                            "componentTypeDisplay": "Row"
+                        }
+                    ]
+                }
+            ],
+            "recordTitleConfig": {
+                "fieldTitle": "date"
+            },
+            "newRecordModalComponents": [
+                {
+                    "componentType": "BaseInputDatepicker",
+                    "props": {
+                        "label": "Date",
+                        "field": "date"
+                    }
                 }
             ]
         }
