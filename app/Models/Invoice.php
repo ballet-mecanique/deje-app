@@ -11,7 +11,7 @@ class Invoice extends Model
         'amount' => 'float',
     ];
 
-    protected $appends = ['sent_and_due', 'amount_display'];
+    protected $appends = ['sent_and_due', 'amount_display', 'company_date_and_amount'];
 
     public function getSentAndDueAttribute()
     {
@@ -21,5 +21,10 @@ class Invoice extends Model
     public function getAmountDisplayAttribute()
     {
         return $this->amount . ' SEK';
+    }
+
+    public function getCompanyDateAndAmountAttribute()
+    {
+        return $this->company?->name . ' ' . $this->sent_and_due . ' ' . $this->amount_display;
     }
 }

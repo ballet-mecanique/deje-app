@@ -750,6 +750,96 @@
                 ],
                 "fieldSubtitleAfter": "description"
             },
+            "newRecordModalComponents": [
+                {
+                    "componentType": "BaseInputDatepicker",
+                    "props": {
+                        "label": "Invoice Date",
+                        "field": "invoice_date"
+                    },
+                    "description": "Invoice Date",
+                    "componentTypeDisplay": "Base Input Datepicker"
+                },
+                {
+                    "componentType": "BaseInputAutocomplete",
+                    "props": {
+                        "label": "Company",
+                        "field": "company_id",
+                        "endpoint": "companies",
+                        "itemText": "name",
+                        "itemValue": "id"
+                    },
+                    "description": "Company",
+                    "componentTypeDisplay": "Base Input Autocomplete"
+                },
+                {
+                    "componentType": "BaseInputText",
+                    "props": {
+                        "label": "Invoice Number",
+                        "field": "invoice_number"
+                    },
+                    "description": "Invoice Number",
+                    "componentTypeDisplay": "Base Input Text"
+                },
+                {
+                    "componentType": "BaseInputText",
+                    "props": {
+                        "label": "Description",
+                        "field": "description"
+                    },
+                    "description": "Description",
+                    "componentTypeDisplay": "Base Input Text"
+                },
+                {
+                    "componentType": "BaseInputFloat",
+                    "props": {
+                        "label": "Amount",
+                        "field": "amount",
+                        "currency": "SEK",
+                        "columns": 4
+                    },
+                    "description": "Amount",
+                    "componentTypeDisplay": "Base Input Float"
+                },
+                {
+                    "componentType": "BaseInputDatepicker",
+                    "props": {
+                        "label": "Due Date",
+                        "field": "date_payable"
+                    },
+                    "description": "Due Date",
+                    "componentTypeDisplay": "Base Input Datepicker"
+                },
+                {
+                    "componentType": "BaseInputRadio",
+                    "props": {
+                        "label": "Status",
+                        "field": "status",
+                        "row": true,
+                        "items": [
+                            {
+                                "label": "unpaid",
+                                "value": "unpaid"
+                            },
+                            {
+                                "label": "paid",
+                                "value": "paid"
+                            }
+                        ]
+                    },
+                    "description": "Status",
+                    "componentTypeDisplay": "Base Input Radio"
+                },
+                {
+                    "componentType": "BaseInputDatepicker",
+                    "props": {
+                        "label": "Payment Date",
+                        "field": "date_paid"
+                    },
+                    "description": "Payment Date",
+                    "componentTypeDisplay": "Base Input Datepicker"
+                }
+            ],
             "tabs": [
                 {
                     "name": "Basic Details",
@@ -796,7 +886,9 @@
                                                     "props": {
                                                         "label": "Description",
                                                         "field": "description"
-                                                    }
+                                                    },
+                                                    "description": "Description",
+                                                    "componentTypeDisplay": "Base Input Text"
                                                 },
                                                 {
                                                     "componentType": "BaseInputFloat",
@@ -835,7 +927,7 @@
                                                             }
                                                         ]
                                                     },
-                                                    "description": "untitled",
+                                                    "description": "Status",
                                                     "componentTypeDisplay": "Base Input Radio"
                                                 },
                                                 {
@@ -843,7 +935,9 @@
                                                     "props": {
                                                         "label": "Payment Date",
                                                         "field": "date_paid"
-                                                    }
+                                                    },
+                                                    "description": "Payment Date",
+                                                    "componentTypeDisplay": "Base Input Datepicker"
                                                 },
                                                 {
                                                     "componentType": "BaseInputSearchOrCreate",
@@ -861,14 +955,18 @@
                                                         ],
                                                         "displayAsLink": true,
                                                         "linkPath": "settlements"
-                                                    }
+                                                    },
+                                                    "description": "Settlement",
+                                                    "componentTypeDisplay": "Base Input Search Or Create"
                                                 }
                                             ]
-                                        }
+                                        },
+                                        "description": "Col 1"
                                     }
                                 ]
                             },
-                            "componentType": "BaseLayoutRow"
+                            "componentType": "BaseLayoutRow",
+                            "componentTypeDisplay": "Row"
                         }
                     ]
                 }
@@ -1108,16 +1206,26 @@
                                                         "headers": [
                                                             {
                                                                 "text": "Name",
-                                                                "value": "owner.first_name"
+                                                                "value": "owner.first_name",
+                                                                "sortable": false
                                                             },
                                                             {
                                                                 "text": "Amount SEK",
-                                                                "value": "amount"
+                                                                "value": "amount",
+                                                                "sortable": false
+                                                            },
+                                                            {
+                                                                "text": "paid",
+                                                                "value": "is_paid",
+                                                                "type": "BooleanEdit",
+                                                                "align": "center",
+                                                                "sortable": false
                                                             }
                                                         ],
                                                         "noNewRecord": true,
                                                         "noDelete": true,
-                                                        "noEdit": true
+                                                        "noEdit": true,
+                                                        "maxWidth": 300
                                                     }
                                                 }
                                             ]
@@ -1151,11 +1259,376 @@
                     }
                 }
             ]
+        },
+        {
+            "basicConfig": {
+                "name": "Accounts",
+                "icon": "mdi-abacus",
+                "path": "accounts",
+                "apiEndpoint": "accounts",
+                "divider": true
+            },
+            "recordTitleConfig": {
+                "fieldTitle": "name",
+                "fieldSubtitleBefore": "number",
+                "headerHeight": 80
+            },
+            "newRecordModalComponents": [
+                {
+                    "componentType": "BaseInputText",
+                    "props": {
+                        "label": "Number",
+                        "field": "number",
+                        "columns": 4
+                    },
+                    "description": "Number",
+                    "componentTypeDisplay": "Base Input Text"
+                },
+                {
+                    "componentType": "BaseInputText",
+                    "props": {
+                        "label": "Name",
+                        "field": "name"
+                    },
+                    "description": "Name",
+                    "componentTypeDisplay": "Base Input Text"
+                },
+                {
+                    "componentType": "BaseInputAutocomplete",
+                    "props": {
+                        "label": "Parent Account",
+                        "field": "account_id",
+                        "endpoint": "accounts",
+                        "itemText": "number_and_name",
+                        "itemValue": "id"
+                    },
+                    "description": "Parent Account",
+                    "componentTypeDisplay": "Base Input Autocomplete"
+                },
+                {
+                    "componentType": "BaseInputRadio",
+                    "props": {
+                        "label": "Type",
+                        "field": "type",
+                        "row": true,
+                        "items": [
+                            {
+                                "label": "Balance Sheet",
+                                "value": "balance_sheet"
+                            },
+                            {
+                                "label": "Profit & Loss",
+                                "value": "profit_and_loss"
+                            }
+                        ]
+                    },
+                    "description": "Type",
+                    "componentTypeDisplay": "Base Input Radio"
+                }
+            ],
+            "tabs": [
+                {
+                    "name": "Basics",
+                    "components": [
+                        {
+                            "props": {
+                                "components": [
+                                    {
+                                        "componentType": "BaseLayoutColumn",
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseInputText",
+                                                    "props": {
+                                                        "label": "Number",
+                                                        "field": "number",
+                                                        "columns": 4
+                                                    },
+                                                    "description": "Number",
+                                                    "componentTypeDisplay": "Base Input Text"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputText",
+                                                    "props": {
+                                                        "label": "Name",
+                                                        "field": "name"
+                                                    },
+                                                    "description": "Name",
+                                                    "componentTypeDisplay": "Base Input Text"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputAutocomplete",
+                                                    "props": {
+                                                        "label": "Parent Account",
+                                                        "field": "account_id",
+                                                        "endpoint": "accounts",
+                                                        "itemText": "number_and_name",
+                                                        "itemValue": "id"
+                                                    },
+                                                    "description": "Parent Account",
+                                                    "componentTypeDisplay": "Base Input Autocomplete"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputRadio",
+                                                    "props": {
+                                                        "label": "Type",
+                                                        "field": "type",
+                                                        "row": true,
+                                                        "items": [
+                                                            {
+                                                                "label": "Balance Sheet",
+                                                                "value": "balance_sheet"
+                                                            },
+                                                            {
+                                                                "label": "Profit & Loss",
+                                                                "value": "profit_and_loss"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "description": "Type",
+                                                    "componentTypeDisplay": "Base Input Radio"
+                                                },
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "accounts",
+                                                        "title": "Child Accounts",
+                                                        "headers": [
+                                                            {
+                                                                "text": "#",
+                                                                "value": "number",
+                                                                "isLink": true
+                                                            },
+                                                            {
+                                                                "text": "Name",
+                                                                "value": "name"
+                                                            }
+                                                        ],
+                                                        "components": [
+                                                            {
+                                                                "componentType": "BaseInputText",
+                                                                "props": {
+                                                                    "label": "Number",
+                                                                    "field": "number",
+                                                                    "columns": 4
+                                                                },
+                                                                "description": "Number",
+                                                                "componentTypeDisplay": "Base Input Text"
+                                                            },
+                                                            {
+                                                                "componentType": "BaseInputText",
+                                                                "props": {
+                                                                    "label": "Name",
+                                                                    "field": "name"
+                                                                },
+                                                                "description": "Name",
+                                                                "componentTypeDisplay": "Base Input Text"
+                                                            },
+                                                            {
+                                                                "componentType": "BaseInputRadio",
+                                                                "props": {
+                                                                    "label": "Type",
+                                                                    "field": "type",
+                                                                    "row": true,
+                                                                    "items": [
+                                                                        {
+                                                                            "label": "Balance Sheet",
+                                                                            "value": "balance_sheet"
+                                                                        },
+                                                                        {
+                                                                            "label": "Profit & Loss",
+                                                                            "value": "profit_and_loss"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "description": "Type",
+                                                                "componentTypeDisplay": "Base Input Radio"
+                                                            }
+                                                        ],
+                                                        "newSubrecordButtonByTitle": true,
+                                                        "maxDialogWidth": 450
+                                                    },
+                                                    "description": "Child Accounts",
+                                                    "componentTypeDisplay": "Data Table"
+                                                }
+                                            ]
+                                        },
+                                        "description": "Col 1"
+                                    }
+                                ]
+                            },
+                            "componentType": "BaseLayoutRow",
+                            "componentTypeDisplay": "Row"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "basicConfig": {
+                "name": "Journal Entries",
+                "icon": "mdi-cash-register",
+                "path": "journal-entries",
+                "apiEndpoint": "journal_entries",
+                "defaultSort": "date+desc"
+            },
+            "recordTitleConfig": {
+                "fieldSubtitleBefore": "date_display",
+                "fieldTitle": "description",
+                "fieldSubtitleAfter": "amount_display",
+                "headerHeight": 110
+            },
+            "queryFields": [
+                {
+                    "fields": [],
+                    "tableName": "journal_entries",
+                    "tableNameLabel": "Basic Details"
+                }
+            ],
+            "tabs": [
+                {
+                    "name": "Basics",
+                    "components": [
+                        {
+                            "props": {
+                                "components": [
+                                    {
+                                        "componentType": "BaseLayoutColumn",
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseInputDatepicker",
+                                                    "props": {
+                                                        "label": "Date",
+                                                        "field": "date"
+                                                    },
+                                                    "description": "Date",
+                                                    "componentTypeDisplay": "Base Input Datepicker"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputText",
+                                                    "props": {
+                                                        "label": "Description",
+                                                        "field": "description"
+                                                    },
+                                                    "description": "Description",
+                                                    "componentTypeDisplay": "Base Input Text"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputFloat",
+                                                    "props": {
+                                                        "field": "amount",
+                                                        "label": "Amount",
+                                                        "currency": "DKK",
+                                                        "columns": 4
+                                                    },
+                                                    "description": "Amount",
+                                                    "componentTypeDisplay": "Base Input Float"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputAutocomplete",
+                                                    "props": {
+                                                        "label": "Debit Account",
+                                                        "field": "account_id_debit",
+                                                        "endpoint": "accounts",
+                                                        "itemText": "number_and_name",
+                                                        "itemValue": "id"
+                                                    },
+                                                    "description": "Debit Account",
+                                                    "componentTypeDisplay": "Base Input Autocomplete"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputAutocomplete",
+                                                    "props": {
+                                                        "label": "Credit Account",
+                                                        "field": "account_id_credit",
+                                                        "endpoint": "accounts",
+                                                        "itemText": "number_and_name",
+                                                        "itemValue": "id"
+                                                    },
+                                                    "description": "Credit Account",
+                                                    "componentTypeDisplay": "Base Input Autocomplete"
+                                                },
+                                                {
+                                                    "componentType": "BaseDivider",
+                                                    "props": [],
+                                                    "description": "untitled",
+                                                    "componentTypeDisplay": "Base Divider"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputAutocomplete",
+                                                    "props": {
+                                                        "label": "Invoice",
+                                                        "field": "invoice_id",
+                                                        "endpoint": "invoices",
+                                                        "itemText": "company_date_and_amount",
+                                                        "itemValue": "id",
+                                                        "endpointSort": "invoice_date"
+                                                    },
+                                                    "description": "Invoice",
+                                                    "componentTypeDisplay": "Base Input Autocomplete"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputText",
+                                                    "props": {
+                                                        "label": "Invoice Number",
+                                                        "field": "invoice.invoice_number",
+                                                        "isReadonly": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "componentType": "BaseLayoutRow"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "settings": [
         {
-            "name": "Länder",
+            "name": "Accounts",
+            "endpoint": "accounts",
+            "components": [
+                {
+                    "props": {
+                        "field": "number",
+                        "label": "Number"
+                    },
+                    "componentType": "BaseInputText"
+                },
+                {
+                    "props": {
+                        "field": "name",
+                        "label": "Name"
+                    },
+                    "componentType": "BaseInputText"
+                },
+                {
+                    "props": {
+                        "field": "account_id",
+                        "label": "Parent",
+                        "type": "autocomplete",
+                        "endpoint": "accounts",
+                        "itemText": "name",
+                        "itemValue": "id"
+                    },
+                    "componentType": "BaseInputAutocomplete"
+                },
+                {
+                    "props": {
+                        "field": "type",
+                        "label": "Type"
+                    },
+                    "componentType": "BaseInputText"
+                }
+            ]
+        },
+        {
+            "name": "Countries",
             "sort": "name_de+asc",
             "endpoint": "countries",
             "components": [

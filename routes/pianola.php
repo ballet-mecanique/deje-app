@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AddInvoiceToSettlementController;
 use App\Http\Controllers\RemoveInvoiceFromSettlementController;
 use App\Http\Controllers\SettlementController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('settlements/{id}', [SettlementController::class, 'show']);
+Route::get('accounts/', [AccountController::class, 'index']);
 
 Route::post('add-invoice-to-settlement/{invoiceId}/{settlementId}', AddInvoiceToSettlementController::class);
 Route::post('remove-invoice-from-settlement/{invoiceId}', RemoveInvoiceFromSettlementController::class);

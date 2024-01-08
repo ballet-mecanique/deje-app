@@ -1,5 +1,57 @@
 [
     {
+        "name": "accounts",
+        "modelName": "Account",
+        "app_record_filter_columns": "number,name",
+        "columns": [
+            {
+                "name": "id",
+                "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "account_id",
+                "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "name",
+                "column_type": "varchar(255)",
+                "app_label": ""
+            },
+            {
+                "name": "number",
+                "column_type": "int",
+                "app_label": ""
+            },
+            {
+                "name": "type",
+                "column_type": "varchar(255)",
+                "app_label": ""
+            },
+            {
+                "name": "created_at",
+                "column_type": "timestamp",
+                "app_label": ""
+            },
+            {
+                "name": "updated_at",
+                "column_type": "timestamp",
+                "app_label": ""
+            }
+        ],
+        "belongsTo": [
+            {
+                "name": "accounts"
+            }
+        ],
+        "hasMany": [
+            {
+                "name": "accounts"
+            }
+        ]
+    },
+    {
         "name": "companies",
         "modelName": "Company",
         "app_record_filter_columns": "name",
@@ -313,6 +365,7 @@
     {
         "name": "invoices",
         "modelName": "Invoice",
+        "app_record_filter_columns": "invoice_number,description,companies.name",
         "columns": [
             {
                 "name": "id",
@@ -381,6 +434,68 @@
             },
             {
                 "name": "settlements"
+            }
+        ],
+        "hasMany": [
+            {
+                "name": "journal_entries"
+            }
+        ]
+    },
+    {
+        "name": "journal_entries",
+        "modelName": "JournalEntry",
+        "app_record_filter_columns": "description",
+        "columns": [
+            {
+                "name": "id",
+                "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "account_id_credit",
+                "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "account_id_debit",
+                "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "invoice_id",
+                "column_type": "bigint unsigned",
+                "app_label": ""
+            },
+            {
+                "name": "date",
+                "column_type": "date",
+                "app_label": ""
+            },
+            {
+                "name": "description",
+                "column_type": "varchar(255)",
+                "app_label": ""
+            },
+            {
+                "name": "amount",
+                "column_type": "varchar(255)",
+                "app_label": ""
+            },
+            {
+                "name": "created_at",
+                "column_type": "timestamp",
+                "app_label": ""
+            },
+            {
+                "name": "updated_at",
+                "column_type": "timestamp",
+                "app_label": ""
+            }
+        ],
+        "belongsTo": [
+            {
+                "name": "invoices"
             }
         ],
         "hasMany": []
@@ -646,6 +761,17 @@
                 "app_label": ""
             }
         ],
+        "custom_attributes": [
+            {
+                "name": "amount",
+                "app_label": "Amount per Person",
+                "loadOnFirstRetrieval": true,
+                "relationshipDependencies": [
+                    "settlement.settlement_payers",
+                    "settlement.invoices"
+                ]
+            }
+        ],
         "belongsTo": [
             {
                 "name": "owners"
@@ -668,6 +794,11 @@
             {
                 "name": "date",
                 "column_type": "date",
+                "app_label": ""
+            },
+            {
+                "name": "is_locked",
+                "column_type": "tinyint(1)",
                 "app_label": ""
             },
             {
