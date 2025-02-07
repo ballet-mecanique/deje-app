@@ -958,6 +958,21 @@
                                                     },
                                                     "description": "Settlement",
                                                     "componentTypeDisplay": "Base Input Search Or Create"
+                                                },
+                                                {
+                                                    "componentType": "BaseInputText",
+                                                    "props": {
+                                                        "label": "Accounting Year",
+                                                        "field": "year",
+                                                        "columns": 4
+                                                    }
+                                                },
+                                                {
+                                                    "componentType": "BaseInputSwitch",
+                                                    "props": {
+                                                        "label": "is exceptional cost",
+                                                        "field": "is_exceptional"
+                                                    }
                                                 }
                                             ]
                                         },
@@ -967,6 +982,216 @@
                             },
                             "componentType": "BaseLayoutRow",
                             "componentTypeDisplay": "Row"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "basicConfig": {
+                "name": "Years",
+                "divider": true,
+                "icon": "mdi-calendar-clock-outline",
+                "path": "years",
+                "apiEndpoint": "years",
+                "defaultSort": "year+desc",
+                "newRecordText": "new year"
+            },
+            "newRecordModalComponents": [
+                {
+                    "componentType": "BaseInputText",
+                    "props": {
+                        "field": "year",
+                        "label": "Year"
+                    }
+                }
+            ],
+            "recordTitleConfig": {
+                "fieldTitle": "year"
+            },
+            "tabs": [
+                {
+                    "name": "Stats",
+                    "components": [
+                        {
+                            "props": {
+                                "components": [
+                                    {
+                                        "componentType": "BaseLayoutColumn",
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "invoices",
+                                                        "noNewRecord": true,
+                                                        "noDelete": true,
+                                                        "noEdit": true,
+                                                        "title": "Electricity Costs",
+                                                        "isCollapsible": true,
+                                                        "headers": [
+                                                            {
+                                                                "text": "Invoice ID",
+                                                                "value": "id",
+                                                                "isLink": true,
+                                                                "sortable": false
+                                                            },
+                                                            {
+                                                                "text": "Date",
+                                                                "value": "invoice_date",
+                                                                "type": "date"
+                                                            },
+                                                            {
+                                                                "text": "Company",
+                                                                "value": "company.name"
+                                                            },
+                                                            {
+                                                                "text": "Description",
+                                                                "value": "description"
+                                                            },
+                                                            {
+                                                                "text": "SEK",
+                                                                "value": "amount",
+                                                                "type": "float",
+                                                                "floatDecimals": "2",
+                                                                "sumField": "amount",
+                                                                "sumDecimals": "2",
+                                                                "align": "right"
+                                                            }
+                                                        ],
+                                                        "includeSumFooter": true,
+                                                        "filters": [
+                                                            {
+                                                                "field": "is_exceptional",
+                                                                "operator": "==",
+                                                                "value": "0"
+                                                            },
+                                                            {
+                                                                "field": "is_electricity_cost",
+                                                                "operator": "==",
+                                                                "value": "1"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "description": "Recurring Costs",
+                                                    "componentTypeDisplay": "Data Table"
+                                                }
+                                            ],
+                                            "maxWidth": 800
+                                        },
+                                        "description": "Col 1"
+                                    },
+                                    {
+                                        "props": {
+                                            "components": [
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "invoices",
+                                                        "noNewRecord": true,
+                                                        "noDelete": true,
+                                                        "noEdit": true,
+                                                        "title": "Other Recurring Costs",
+                                                        "isCollapsible": true,
+                                                        "headers": [
+                                                            {
+                                                                "text": "Invoice ID",
+                                                                "value": "id",
+                                                                "isLink": true,
+                                                                "sortable": false
+                                                            },
+                                                            {
+                                                                "text": "Date",
+                                                                "value": "invoice_date",
+                                                                "type": "date"
+                                                            },
+                                                            {
+                                                                "text": "Company",
+                                                                "value": "company.name"
+                                                            },
+                                                            {
+                                                                "text": "SEK",
+                                                                "value": "amount",
+                                                                "type": "float",
+                                                                "floatDecimals": "2",
+                                                                "sumField": "amount",
+                                                                "sumDecimals": "2",
+                                                                "align": "right"
+                                                            }
+                                                        ],
+                                                        "includeSumFooter": true,
+                                                        "filters": [
+                                                            {
+                                                                "field": "is_exceptional",
+                                                                "operator": "==",
+                                                                "value": "0"
+                                                            },
+                                                            {
+                                                                "field": "is_electricity_cost",
+                                                                "operator": "==",
+                                                                "value": "0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "description": "Exceptional Costs",
+                                                    "componentTypeDisplay": "Data Table"
+                                                },
+                                                {
+                                                    "componentType": "BaseRecordDataTable",
+                                                    "props": {
+                                                        "endpoint": "invoices",
+                                                        "noNewRecord": true,
+                                                        "noDelete": true,
+                                                        "noEdit": true,
+                                                        "title": "Exceptional Costs",
+                                                        "isCollapsible": true,
+                                                        "headers": [
+                                                            {
+                                                                "text": "Invoice ID",
+                                                                "value": "id",
+                                                                "isLink": true,
+                                                                "sortable": false
+                                                            },
+                                                            {
+                                                                "text": "Date",
+                                                                "value": "invoice_date",
+                                                                "type": "date"
+                                                            },
+                                                            {
+                                                                "text": "Company",
+                                                                "value": "company.name"
+                                                            },
+                                                            {
+                                                                "text": "SEK",
+                                                                "value": "amount",
+                                                                "type": "float",
+                                                                "floatDecimals": "2",
+                                                                "sumField": "amount",
+                                                                "sumDecimals": "2",
+                                                                "align": "right"
+                                                            }
+                                                        ],
+                                                        "includeSumFooter": true,
+                                                        "filters": [
+                                                            {
+                                                                "field": "is_exceptional",
+                                                                "operator": "==",
+                                                                "value": "1"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "description": "Exceptional Costs",
+                                                    "componentTypeDisplay": "Data Table"
+                                                }
+                                            ],
+                                            "maxWidth": 800
+                                        },
+                                        "componentType": "BaseLayoutColumn",
+                                        "description": "Col 2"
+                                    }
+                                ]
+                            },
+                            "componentType": "BaseLayoutRow"
                         }
                     ]
                 }
